@@ -7,37 +7,10 @@ let socket;
 let userName = $('#userName').val();
 
 function doConnectView() {
- 
-   //  $('#spinner').css("display", "flex");
-   //  //socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
-   //  socket = new SockJS('http://localhost:8080/sock');
-   //  stompClient = Stomp.over(socket);
-   //
-   //  stompClient.heartbeatOutgoing = 2000;
-   //  stompClient.heartbeatIncoming = 2000;
-   //
-   //  stompClient.debug = () => {
-   //  };
-   //
-   //  stompClient.connect({}, onConnectedNotice, onErrorNotice);
-   // //  stompClient.connect({}, function (frame) {
-   // //
-   // //      console.log('Connected: ' + frame);
-   // //
-   // //      startLearning();
-   // //
-   // //  });
-   //  socket.onclose = function () {
-   //      console.log("die");
-   //      $('#spinner').css("display", "flex");
-   //      alert("lost connection");
-   //  };
-   //  stompClient.onStompError = function () {
-   //      $('#spinner').css("display", "flex");
-   //      alert("lost connection");
-   //  }
 
-        // socket = new SockJS('http://localhost:8080/sock');
+
+
+          //socket = new SockJS('http://localhost:8080/sock');
 
           socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
         stompClient = Stomp.over(socket);
@@ -101,10 +74,10 @@ function endLearning() {
             }
         }
     }
-    // console.log(beforeIdScorm)
-    beforeIdScorm = null;
-    // console.log(countDone)
+    console.log(beforeIdScorm)
 
+      console.log(countDone);
+      console.log(countQuitzDone);
     stompClient.send(`${topic}/endLearning`, {}, JSON.stringify({
         partDone: countDone,
         quitzDone: countQuitzDone,

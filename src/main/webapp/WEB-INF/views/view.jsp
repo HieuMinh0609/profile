@@ -33,8 +33,8 @@
         <%--<iframe width="100%" height="600" src="/static/file/Scrom/res/index.html"> </iframe>--%>
         <%--<div class="col-md-12" style="padding-bottom: 56.55%"><iframe class="col-md-12 position-absolute" src="/e-learning/courseware/scorm/f5197b3b-c259-4a42-b18c-c16d4dd71c80/res/index.html" ></iframe></div>--%>
          <%--<iframe width="100%" height="600" src="/e-learning/courseware/scorm/P2_Hoinhap/res/index.html" ></iframe>--%>
-        <div  width="100%" height="600" ><iframe
-      src="/e-learning/courseware/scorm/P2_Hoinhap/res/index.html" ></iframe></div>
+        <div  style="margin: 0 auto;"  ><iframe style="margin-top: 50%" width="100%" height="600"
+        src="/e-learning/courseware/scorm/P2_Hoinhap/res/index.html" ></iframe></div>
 </body>
 
 
