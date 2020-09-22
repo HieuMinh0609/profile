@@ -7,37 +7,9 @@ let socket;
 let userName = $('#userName').val();
 
 function doConnectView() {
-   //  $('#spinner').css("display", "flex");
-   //  //socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
-   //  socket = new SockJS('http://localhost:8080/sock');
-   //  stompClient = Stomp.over(socket);
-   //
-   //  stompClient.heartbeatOutgoing = 2000;
-   //  stompClient.heartbeatIncoming = 2000;
-   //
-   //  stompClient.debug = () => {
-   //  };
-   //
-   //  stompClient.connect({}, onConnectedNotice, onErrorNotice);
-   // //  stompClient.connect({}, function (frame) {
-   // //
-   // //      console.log('Connected: ' + frame);
-   // //
-   // //      startLearning();
-   // //
-   // //  });
-   //  socket.onclose = function () {
-   //      console.log("die");
-   //      $('#spinner').css("display", "flex");
-   //      alert("lost connection");
-   //  };
-   //  stompClient.onStompError = function () {
-   //      $('#spinner').css("display", "flex");
-   //      alert("lost connection");
-   //  }
 
-         socket = new SockJS('http://localhost:8080/sock');
-          ///socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
+         //socket = new SockJS('http://localhost:8080/sock');
+          socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function (frame) {
@@ -52,28 +24,9 @@ function doConnectView() {
 
 }
 
-// function onConnectedNotice() {
-//
-//     // roomIdDisplay.textContent = roomId;
-//     topic = `/notification-app/${userName}`;
-//     // console.log('before sub'+newRoomId);
-//     currentSubscription = stompClient.subscribe(`/notification/${userName}`,
-//         onMessageReceivedNotice);
-//
-// }
-//
-// function onMessageReceivedNotice(payload) {
-//     var message = JSON.parse(payload.body);
-//     // console.log(message)
-// }
-//
-//
-//
-// function onErrorNotice(error) {
-//     console.log('uh oh! service unavailable');
-// }
 
-var beforeIdScorm = null;
+
+var beforeIdScorm = "ADA6C4C3-5F95-4087-BF18-778FE69D2889";
 
 function startLearning() {
 
