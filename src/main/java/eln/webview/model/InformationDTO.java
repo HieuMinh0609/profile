@@ -16,6 +16,7 @@ public class InformationDTO {
    private String userName;
    private String token;
    private String springId;
+   private String linkScorm;
 
    public InformationDTO(String courseWareType, Long idChapter, Long idCourseWare, Integer length, Integer totalQuitz, String type, String userName, String token) {
       this.courseWareType = courseWareType;

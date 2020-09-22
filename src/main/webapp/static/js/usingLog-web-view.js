@@ -5,17 +5,16 @@ let currentSubscription;
 let topic = "/notification-app/"+$('#userName').val();
 let socket;
 let userName = $('#userName').val();
-
+var beforeIdScorm = $('#springId').val();
 function doConnectView() {
 
 
 
-         // socket = new SockJS('http://localhost:8080/sock');
-          socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
+       //   socket = new SockJS('http://localhost:8080/sock');
+         socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function (frame) {
-        //    setConnectedSocket(true);
             console.log('Connected: ' + frame);
             startLearning();
 
@@ -28,7 +27,7 @@ function doConnectView() {
 
 
 
-var beforeIdScorm = $('#springId').val();
+//var beforeIdScorm = "ADA6C4C3-5F95-4087-BF18-778FE69D2889";
 
 function startLearning() {
 
@@ -84,30 +83,32 @@ function endLearning() {
 }
 
 
-
 window.onbeforeunload = function () {
-    var countDone = 0;
-    var countQuitzDone = 0;
-    if (beforeIdScorm) {
-        var itemId = 'ispring::{' + beforeIdScorm + '}';
-        var progress = JSON.parse(window.localStorage.getItem(itemId));
-        for (var key in progress.slideStates) {
-            if (progress.slideStates[key].completed) countDone++
-            if (progress.slideStates[key].quizInfo) {
-                if (progress.slideStates[key].quizInfo.passed) {
-                    countQuitzDone++;
+        var countDone = 0;
+        var countQuitzDone = 0;
+        if (beforeIdScorm) {
+            var itemId = 'ispring::{' + beforeIdScorm + '}';
+            var progress = JSON.parse(window.localStorage.getItem(itemId));
+            for (var key in progress.slideStates) {
+                if (progress.slideStates[key].completed) countDone++
+                if (progress.slideStates[key].quizInfo) {
+                    if (progress.slideStates[key].quizInfo.passed) {
+                        countQuitzDone++;
+                    }
                 }
             }
-        }
 
-    }
-    // console.log(countDone)
-    stompClient.send(`${topic}/header-scorm`, {}, JSON.stringify({
-        partDone: countDone,
-        quitzDone: countQuitzDone,
-    }));
-   // endLearning();
-    return 'Bạn có muốn thoát khỏi trang này không?';
+        }
+        // console.log(countDone)
+        stompClient.send(`${topic}/header-scorm`, {}, JSON.stringify({
+            partDone: countDone,
+            quitzDone: countQuitzDone,
+        }));
+        // endLearning();
+        return 'Bạn có muốn thoát khỏi trang này không?';
+
 
 }
+
+
 
