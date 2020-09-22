@@ -36,8 +36,8 @@ function doConnectView() {
    //      alert("lost connection");
    //  }
 
-         socket = new SockJS('http://localhost:8080/sock');
-          ///socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
+        // socket = new SockJS('http://localhost:8080/sock');
+          socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function (frame) {
