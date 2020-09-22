@@ -18,14 +18,20 @@ public class InformationDTO {
    private String springId;
    private String linkScorm;
 
-   public InformationDTO(String courseWareType, Long idChapter, Long idCourseWare, Integer length, Integer totalQuitz, String type, String userName, String token) {
-      this.courseWareType = courseWareType;
-      this.idChapter = idChapter;
-      this.idCourseWare = idCourseWare;
-      this.length = length;
-      this.totalQuitz = totalQuitz;
-      this.type = type;
-      this.userName = userName;
-      this.token = token;
-   }
+    public InformationDTO(String courseWareType, Long idChapter, Long idCourseWare, Integer length, Integer totalQuitz, String type, String userName, String token, String springId, String linkScorm) {
+        this.courseWareType = courseWareType;
+        this.idChapter = idChapter;
+        this.idCourseWare = idCourseWare;
+        this.length = length;
+        this.totalQuitz = totalQuitz;
+        this.type = type;
+        this.userName = userName;
+        this.token = token;
+        this.springId = springId;
+        this.linkScorm = linkScorm;
+    }
+
+
+
+
 }
