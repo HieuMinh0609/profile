@@ -33,7 +33,7 @@
         <%--<iframe width="100%" height="600" src="/static/file/Scrom/res/index.html"> </iframe>--%>
         <%--<div class="col-md-12" style="padding-bottom: 56.55%"><iframe class="col-md-12 position-absolute" src="/e-learning/courseware/scorm/f5197b3b-c259-4a42-b18c-c16d4dd71c80/res/index.html" ></iframe></div>--%>
          <%--<iframe width="100%" height="600" src="/e-learning/courseware/scorm/P2_Hoinhap/res/index.html" ></iframe>--%>
-        <div  style="margin: 0 auto;"  ><iframe style="margin-top: 50%" width="100%" height="600"
+        <div     ><iframe style="margin: 0 auto" width="100%" height="600"
         src="/e-learning/courseware/scorm/P2_Hoinhap/res/index.html" ></iframe></div>
 </body>
 
@@ -48,6 +48,8 @@
 <input type="hidden" id="totalQuitz" value="${infor.totalQuitz}">
 <input type="hidden" id="type" value="${infor.type}">
 <input type="hidden" id="token" value="${infor.token}">
+<input type="hidden" id="springId" value="${infor.springId}">
+
 <script>
     $( document ).ready(function() {
         doConnectView();

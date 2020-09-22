@@ -10,8 +10,7 @@ function doConnectView() {
 
 
 
-          //socket = new SockJS('http://localhost:8080/sock');
-
+         // socket = new SockJS('http://localhost:8080/sock');
           socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
         stompClient = Stomp.over(socket);
 
@@ -29,7 +28,7 @@ function doConnectView() {
 
 
 
-var beforeIdScorm = "ADA6C4C3-5F95-4087-BF18-778FE69D2889";
+var beforeIdScorm = $('#springId').val();
 
 function startLearning() {
 
@@ -107,7 +106,7 @@ window.onbeforeunload = function () {
         partDone: countDone,
         quitzDone: countQuitzDone,
     }));
-    endLearning();
+   // endLearning();
     return 'Bạn có muốn thoát khỏi trang này không?';
 
 }
