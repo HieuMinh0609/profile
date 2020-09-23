@@ -10,33 +10,19 @@ function doConnectView() {
 
 
 
-        //  socket = new SockJS('http://localhost:8080/sock');
-          socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
+        //socket = new SockJS('http://localhost:8080/sock');
+        socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
             startLearning();
-
         });
 
 
 
 
 }
-// $(window).bind('beforeunload', function(){
-//     endLearning();
-//     return 'Are you sure you want to leave?';
-// });
-//
-// window.addEventListener("beforeunload", function() {
-//     endLearning();
-//     return "hi";
-// });
-
-
-//var beforeIdScorm = "ADA6C4C3-5F95-4087-BF18-778FE69D2889";
-
 
 
 
@@ -87,8 +73,7 @@ function endLearning() {
     }catch (e) {
         
     }
-    console.log(beforeIdScorm)
-
+      console.log(beforeIdScorm);
       console.log(countDone);
       console.log(countQuitzDone);
     stompClient.send(`${topic}/endLearning`, {}, JSON.stringify({
@@ -97,45 +82,34 @@ function endLearning() {
     }));
 }
 
-window.onbeforeunload = function () {
-        var countDone = 0;
-        var countQuitzDone = 0;
-        try{
-            if (beforeIdScorm) {
 
-                var itemId = 'ispring::{' + beforeIdScorm + '}';
-                var progress = JSON.parse(window.localStorage.getItem(itemId));
+setTimeout(function(){
+    var countDone = 0;
+    var countQuitzDone = 0;
+    try{
+        if (beforeIdScorm) {
 
-                for (var key in progress.slideStates) {
-                    if (progress.slideStates[key].completed) countDone++
-                    if (progress.slideStates[key].quizInfo) {
-                        if (progress.slideStates[key].quizInfo.passed) {
-                            countQuitzDone++;
-                        }
+            var itemId = 'ispring::{' + beforeIdScorm + '}';
+            var progress = JSON.parse(window.localStorage.getItem(itemId));
+
+            for (var key in progress.slideStates) {
+                if (progress.slideStates[key].completed) countDone++
+                if (progress.slideStates[key].quizInfo) {
+                    if (progress.slideStates[key].quizInfo.passed) {
+                        countQuitzDone++;
                     }
                 }
-
             }
-        }catch (e) {
 
         }
+    }catch (e) {
 
-        // console.log(countDone)
-        stompClient.send(`${topic}/header-scorm`, {}, JSON.stringify({
-            partDone: countDone,
-            quitzDone: countQuitzDone,
-        }));
-        // endLearning();
-        return 'Bạn có muốn thoát khỏi trang này không?';
+    }
 
-
-}
-setTimeout(function(){
-    var itemId = 'ispring::{' + beforeIdScorm + '}';
-    var progress = JSON.parse(window.localStorage.getItem(itemId));
-    alert(JSON.stringify(progress));
-}, 3000);
-
-
-
+    // console.log(countDone)
+    stompClient.send(`${topic}/header-scorm`, {}, JSON.stringify({
+        partDone: countDone,
+        quitzDone: countQuitzDone,
+    }));
+}, 10000);
 
