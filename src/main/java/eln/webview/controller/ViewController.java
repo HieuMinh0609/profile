@@ -22,7 +22,7 @@ public class ViewController {
 
     @RequestMapping(value ="/scrom", method = RequestMethod.GET)
     public String AppendCompetiton(Model model
-   ,@RequestParam(required = false,name = "courseWareType")  String courseWareType
+    ,@RequestParam(required = false,name = "courseWareType")  String courseWareType
     ,@RequestParam(required = false,name = "idChapter")  Long idChapter
     ,@RequestParam(required = false,name = "length")  Integer length
     ,@RequestParam(required = false,name = "idCourseWare")  Long idCourseWare
@@ -32,7 +32,6 @@ public class ViewController {
     ,@RequestParam(required = false,name = "token")  String token
     ,@RequestParam(required = false,name = "springId")  String springId
     ,@RequestParam(required = false,name = "linkScorm")  String linkScorm
-
     ) {
         InformationDTO informationDTO = new InformationDTO( courseWareType,  idChapter,  idCourseWare,  length,  totalQuitz,  type,  userName,  token,  springId,  linkScorm);
         model.addAttribute("infor",informationDTO );

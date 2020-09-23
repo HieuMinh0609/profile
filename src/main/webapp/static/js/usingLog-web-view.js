@@ -10,8 +10,8 @@ function doConnectView() {
 
 
 
-       //   socket = new SockJS('http://localhost:8080/sock');
-         socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
+        //  socket = new SockJS('http://localhost:8080/sock');
+          socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function (frame) {
@@ -24,10 +24,21 @@ function doConnectView() {
 
 
 }
-
+// $(window).bind('beforeunload', function(){
+//     endLearning();
+//     return 'Are you sure you want to leave?';
+// });
+//
+// window.addEventListener("beforeunload", function() {
+//     endLearning();
+//     return "hi";
+// });
 
 
 //var beforeIdScorm = "ADA6C4C3-5F95-4087-BF18-778FE69D2889";
+
+
+
 
 function startLearning() {
 
@@ -60,17 +71,21 @@ function endLearning() {
     var progress = null;
     var countDone = 0;
     var countQuitzDone = 0;
-    if (beforeIdScorm) {
-        var itemId = 'ispring::{' + beforeIdScorm + '}';
-        progress = JSON.parse(window.localStorage.getItem(itemId));
-        for (var key in progress.slideStates) {
-            if (progress.slideStates[key].completed) countDone++
-            if (progress.slideStates[key].quizInfo) {
-                if (progress.slideStates[key].quizInfo.passed) {
-                    countQuitzDone++;
+    try {
+        if (beforeIdScorm) {
+            var itemId = 'ispring::{' + beforeIdScorm + '}';
+            progress = JSON.parse(window.localStorage.getItem(itemId));
+            for (var key in progress.slideStates) {
+                if (progress.slideStates[key].completed) countDone++
+                if (progress.slideStates[key].quizInfo) {
+                    if (progress.slideStates[key].quizInfo.passed) {
+                        countQuitzDone++;
+                    }
                 }
             }
         }
+    }catch (e) {
+        
     }
     console.log(beforeIdScorm)
 
@@ -82,23 +97,29 @@ function endLearning() {
     }));
 }
 
-
 window.onbeforeunload = function () {
         var countDone = 0;
         var countQuitzDone = 0;
-        if (beforeIdScorm) {
-            var itemId = 'ispring::{' + beforeIdScorm + '}';
-            var progress = JSON.parse(window.localStorage.getItem(itemId));
-            for (var key in progress.slideStates) {
-                if (progress.slideStates[key].completed) countDone++
-                if (progress.slideStates[key].quizInfo) {
-                    if (progress.slideStates[key].quizInfo.passed) {
-                        countQuitzDone++;
+        try{
+            if (beforeIdScorm) {
+
+                var itemId = 'ispring::{' + beforeIdScorm + '}';
+                var progress = JSON.parse(window.localStorage.getItem(itemId));
+
+                for (var key in progress.slideStates) {
+                    if (progress.slideStates[key].completed) countDone++
+                    if (progress.slideStates[key].quizInfo) {
+                        if (progress.slideStates[key].quizInfo.passed) {
+                            countQuitzDone++;
+                        }
                     }
                 }
+
             }
+        }catch (e) {
 
         }
+
         // console.log(countDone)
         stompClient.send(`${topic}/header-scorm`, {}, JSON.stringify({
             partDone: countDone,
@@ -109,6 +130,12 @@ window.onbeforeunload = function () {
 
 
 }
+setTimeout(function(){
+    var itemId = 'ispring::{' + beforeIdScorm + '}';
+    var progress = JSON.parse(window.localStorage.getItem(itemId));
+    alert(JSON.stringify(progress));
+}, 3000);
+
 
 
 

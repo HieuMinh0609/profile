@@ -27,9 +27,11 @@
 
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 
 </head>
-<body>
+<body >
         <%--<iframe width="100%" height="600" src="/static/file/Scrom/res/index.html"> </iframe>--%>
         <%--<div class="col-md-12" style="padding-bottom: 56.55%"><iframe class="col-md-12 position-absolute" src="/e-learning/courseware/scorm/f5197b3b-c259-4a42-b18c-c16d4dd71c80/res/index.html" ></iframe></div>--%>
          <%--<iframe width="100%" height="600" src="/e-learning/courseware/scorm/P2_Hoinhap/res/index.html" ></iframe>--%>
@@ -49,14 +51,15 @@
 <input type="hidden" id="type" value="${infor.type}">
 <input type="hidden" id="token" value="${infor.token}">
 <input type="hidden" id="springId" value="${infor.springId}">
-
+<script
+        src="/web-view/static/js/usingLog-web-view.js"></script>
 <script>
     $( document ).ready(function() {
         doConnectView();
     });
 
 
+
 </script>
-<script
-        src="/web-view/static/js/usingLog-web-view.js"></script>
+
 </html>
