@@ -83,7 +83,7 @@ function endLearning() {
 }
 
 
-setTimeout(function(){
+function timeOut(){
     var countDone = 0;
     var countQuitzDone = 0;
     try{
@@ -106,10 +106,18 @@ setTimeout(function(){
 
     }
 
-    // console.log(countDone)
     stompClient.send(`${topic}/header-scorm`, {}, JSON.stringify({
         partDone: countDone,
         quitzDone: countQuitzDone,
     }));
+};
+
+setTimeout(function(){
+    function five() {
+        timeOut();
+        setTimeout(five, 10000);
+    }
+    five();
 }, 10000);
+
 
