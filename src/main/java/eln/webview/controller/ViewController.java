@@ -45,28 +45,32 @@ public class ViewController {
     ,@RequestParam(required = false,name = "linkScorm")  String linkScorm
     ) {
 
-        Map<String, String> params = new HashMap<>();
-        params.put("userName", userName);
-        params.put("idChapter", idChapter.toString());
-        params.put("idCourseWare", idCourseWare.toString());
+//        Map<String, String> params = new HashMap<>();
+//        params.put("userName", userName);
+//        params.put("idChapter", idChapter.toString());
+//        params.put("idCourseWare", idCourseWare.toString());
+//
+//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/api/web-view/permission");
+//        for (Map.Entry<String, String> entry : params.entrySet()) {
+//            builder.queryParam(entry.getKey(), entry.getValue());
+//        }
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Authorization"," Bearer "+ token);
+//        headers.set("Accept", "application/json");
+//        RestTemplate restTemplate = new RestTemplate();
+//
+//        HttpEntity<Boolean> response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, new HttpEntity(headers), Boolean.class);
+//        if(response.getBody()){
+//            InformationDTO informationDTO = new InformationDTO( courseWareType,  idChapter,  idCourseWare,  length,  totalQuitz,  type,  userName,  token,  springId,  linkScorm);
+//            model.addAttribute("infor",informationDTO );
+//            return "view";
+//        }else {
+//            return null;
+//        }
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://localhost:8082/api/web-view/permission");
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            builder.queryParam(entry.getKey(), entry.getValue());
-        }
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization"," Bearer "+ token);
-        headers.set("Accept", "application/json");
-        RestTemplate restTemplate = new RestTemplate();
-
-        HttpEntity<Boolean> response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, new HttpEntity(headers), Boolean.class);
-        if(response.getBody()){
-            InformationDTO informationDTO = new InformationDTO( courseWareType,  idChapter,  idCourseWare,  length,  totalQuitz,  type,  userName,  token,  springId,  linkScorm);
-            model.addAttribute("infor",informationDTO );
-            return "view";
-        }else {
-            return null;
-        }
+        InformationDTO informationDTO = new InformationDTO( courseWareType,  idChapter,  idCourseWare,  length,  totalQuitz,  type,  userName,  token,  springId,  linkScorm);
+        model.addAttribute("infor",informationDTO );
+        return "view";
     }
 
 
