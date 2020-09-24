@@ -83,15 +83,19 @@ function endLearning() {
 }
 
 
-function timeOut(){
+
+
+$(document).on('click','.btn-style',function () {
+    var progress = null;
     var countDone = 0;
     var countQuitzDone = 0;
-    try{
+    var quitz=null;
+    var slide = null;
+    var text = null;
+    try {
         if (beforeIdScorm) {
-
             var itemId = 'ispring::{' + beforeIdScorm + '}';
-            var progress = JSON.parse(window.localStorage.getItem(itemId));
-
+            progress = JSON.parse(window.localStorage.getItem(itemId));
             for (var key in progress.slideStates) {
                 if (progress.slideStates[key].completed) countDone++
                 if (progress.slideStates[key].quizInfo) {
@@ -100,24 +104,49 @@ function timeOut(){
                     }
                 }
             }
-
         }
     }catch (e) {
 
     }
-
-    stompClient.send(`${topic}/header-scorm`, {}, JSON.stringify({
-        partDone: countDone,
-        quitzDone: countQuitzDone,
-    }));
-};
-
-setTimeout(function(){
-    function five() {
-        timeOut();
-        setTimeout(five, 10000);
+    if($('#length').val()!=0){
+          slide = Math.floor((countDone/ $('#length').val() )*100);
     }
-    five();
-}, 10000);
+    if($("#totalQuitz").val()!=0){
+          quitz = Math.floor((countQuitzDone/$("#totalQuitz").val())*100);
+    }
+    if(slide>100){
+        slide =100;
+    }
+    if(quitz>100){
+        quitz =100;
+    }
+
+
+
+    if (slide){
+        text = "Xác nhận hoàn thành học liệu! Bạn đã hoàn thành "
+            +slide+" % slide";
+    }
+    if(quitz && slide){
+          text = "Xác nhận hoàn thành học liệu bạn đã hoàn thành "
+            +slide+" % slide, "+ quitz +" % câu hỏi  đã đạt";
+    }
+    if(text){
+        var r = confirm(text);
+        if(r){
+            stompClient.send(`${topic}/endLearning`, {}, JSON.stringify({
+                partDone: countDone,
+                quitzDone: countQuitzDone,
+            }));
+        }
+    }else{
+        var s = confirm("Bạn có muốn thoát");
+        if(s){
+            window.history.back();
+        }
+    }
+});
+
+
 
 

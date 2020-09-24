@@ -29,17 +29,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 
 </head>
+<style>
+    .btn-style{
+        position: absolute;
+        top: 5px;
+        height: 53px;
+        font-size: 25px;
+
+    }
+</style>
 <body >
         <%--<iframe width="100%" height="600" src="/static/file/Scrom/res/index.html"> </iframe>--%>
         <%--<div class="col-md-12" style="padding-bottom: 56.55%"><iframe class="col-md-12 position-absolute" src="/e-learning/courseware/scorm/f5197b3b-c259-4a42-b18c-c16d4dd71c80/res/index.html" ></iframe></div>--%>
          <%--<iframe width="100%" height="600" src="/e-learning/courseware/scorm/P2_Hoinhap/res/index.html" ></iframe>--%>
-        <div>
-                <iframe   id="iframe" style="margin: 0 auto" width="100%" height="600"
+        <div style="height: 100vh;width: 100%">
+                <iframe   id="iframe" style="margin: 0 auto;height: 100%;" width="100%"
             src="${infor.linkScorm}" ></iframe>
 
         </div>
+        <button  class="btn btn-warning btn-style">Xác nhận hoàn thành học liệu</button>
 </body>
 
 
