@@ -11,7 +11,7 @@ function doConnectView() {
 
 
         //socket = new SockJS('http://localhost:8080/sock');
-        socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
+       socket = new SockJS('http://elearning-uat.vnpost.vn/sock');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function (frame) {
@@ -132,18 +132,16 @@ $(document).on('click','.btn-style',function () {
             +slide+" % slide, "+ quitz +" % câu hỏi  đã đạt";
     }
     if(text){
-        var r = confirm(text);
-        if(r){
+        ConfirmAlert(function () {
             stompClient.send(`${topic}/endLearning`, {}, JSON.stringify({
                 partDone: countDone,
                 quitzDone: countQuitzDone,
             }));
-        }
+        },"Xác nhận hoàn thành", text,"infor");
+
     }else{
-        var s = confirm("Bạn có muốn thoát");
-        if(s){
-            window.history.back();
-        }
+        ConfirmAlert(function () {
+        },"Xác nhận hoàn thành", "Bạn hoàn thành 0% !","infor");
     }
 });
 

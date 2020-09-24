@@ -31,6 +31,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 
 </head>
@@ -38,12 +39,16 @@
     .btn-style{
         position: absolute;
         top: 5px;
-        height: 53px;
+        height: 60px;
         font-size: 25px;
+        border: none;
 
     }
+    .swal2-popup{
+       font-size: 30px;
+    }
 </style>
-<body >
+<body style="position: relative;">
         <%--<iframe width="100%" height="600" src="/static/file/Scrom/res/index.html"> </iframe>--%>
         <%--<div class="col-md-12" style="padding-bottom: 56.55%"><iframe class="col-md-12 position-absolute" src="/e-learning/courseware/scorm/f5197b3b-c259-4a42-b18c-c16d4dd71c80/res/index.html" ></iframe></div>--%>
          <%--<iframe width="100%" height="600" src="/e-learning/courseware/scorm/P2_Hoinhap/res/index.html" ></iframe>--%>
@@ -52,7 +57,7 @@
             src="${infor.linkScorm}" ></iframe>
 
         </div>
-        <button  class="btn btn-warning btn-style">Xác nhận hoàn thành học liệu</button>
+        <button id="mydiv"  class="btn btn-warning btn-style">Xác nhận hoàn thành học liệu</button>
 </body>
 
 
@@ -69,12 +74,60 @@
 <input type="hidden" id="springId" value="${infor.springId}">
 <script
         src="/web-view/static/js/usingLog-web-view.js"></script>
+<script src="/web-view/static/common/CommonAlert.js"></script>
+<%--<script src="/web-view/static/common/jquery.ui.touch-punch.js"></script>--%>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.17/jquery-ui.min.js"></script>
+<script src="/web-view/static/common/jquery.ui.touch-punch.min.js"></script>
 <script>
     $( document ).ready(function() {
         doConnectView();
+        $('#mydiv').draggable();
     });
 
 
+
+
+    // function dragElement(elmnt) {
+    //     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    //     if (document.getElementById(elmnt.id + "header")) {
+    //         /* if present, the header is where you move the DIV from:*/
+    //         document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    //     } else {
+    //         /* otherwise, move the DIV from anywhere inside the DIV:*/
+    //         elmnt.onmousedown = dragMouseDown;
+    //     }
+    //
+    //     function dragMouseDown(e) {
+    //         e = e || window.event;
+    //         e.preventDefault();
+    //         // get the mouse cursor position at startup:
+    //         pos3 = e.clientX;
+    //         pos4 = e.clientY;
+    //         document.onmouseup = closeDragElement;
+    //         // call a function whenever the cursor moves:
+    //         document.onmousemove = elementDrag;
+    //     }
+    //
+    //     function elementDrag(e) {
+    //         e = e || window.event;
+    //         e.preventDefault();
+    //         // calculate the new cursor position:
+    //         pos1 = pos3 - e.clientX;
+    //         pos2 = pos4 - e.clientY;
+    //         pos3 = e.clientX;
+    //         pos4 = e.clientY;
+    //         // set the element's new position:
+    //         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    //         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    //     }
+    //
+    //     function closeDragElement() {
+    //         /* stop moving when mouse button is released:*/
+    //         document.onmouseup = null;
+    //         document.onmousemove = null;
+    //     }
+    // }
 
 </script>
 
