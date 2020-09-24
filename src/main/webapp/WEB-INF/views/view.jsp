@@ -49,15 +49,10 @@
     }
 </style>
 <body  id="container" >
-        <%--<iframe width="100%" height="600" src="/static/file/Scrom/res/index.html"> </iframe>--%>
-        <%--<div class="col-md-12" style="padding-bottom: 56.55%"><iframe class="col-md-12 position-absolute" src="/e-learning/courseware/scorm/f5197b3b-c259-4a42-b18c-c16d4dd71c80/res/index.html" ></iframe></div>--%>
-         <%--<iframe width="100%" height="600" src="/e-learning/courseware/scorm/P2_Hoinhap/res/index.html" ></iframe>--%>
         <div  style="height: 100vh;width: 100%">
                 <iframe   id="iframe" style="margin: 0 auto;height: 100%;" width="100%"
             src="${infor.linkScorm}" ></iframe>
-
         </div>
-
         <button id="mydiv"  class="btn btn-warning btn-style">Xác nhận hoàn thành học liệu</button>
 </body>
 
@@ -86,49 +81,6 @@
         $('#mydiv').draggable();
     });
 
-
-
-
-    // function dragElement(elmnt) {
-    //     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    //     if (document.getElementById(elmnt.id + "header")) {
-    //         /* if present, the header is where you move the DIV from:*/
-    //         document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    //     } else {
-    //         /* otherwise, move the DIV from anywhere inside the DIV:*/
-    //         elmnt.onmousedown = dragMouseDown;
-    //     }
-    //
-    //     function dragMouseDown(e) {
-    //         e = e || window.event;
-    //         e.preventDefault();
-    //         // get the mouse cursor position at startup:
-    //         pos3 = e.clientX;
-    //         pos4 = e.clientY;
-    //         document.onmouseup = closeDragElement;
-    //         // call a function whenever the cursor moves:
-    //         document.onmousemove = elementDrag;
-    //     }
-    //
-    //     function elementDrag(e) {
-    //         e = e || window.event;
-    //         e.preventDefault();
-    //         // calculate the new cursor position:
-    //         pos1 = pos3 - e.clientX;
-    //         pos2 = pos4 - e.clientY;
-    //         pos3 = e.clientX;
-    //         pos4 = e.clientY;
-    //         // set the element's new position:
-    //         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    //         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-    //     }
-    //
-    //     function closeDragElement() {
-    //         /* stop moving when mouse button is released:*/
-    //         document.onmouseup = null;
-    //         document.onmousemove = null;
-    //     }
-    // }
 
     var dragItem = document.querySelector("#mydiv");
     var container = document.querySelector("#container");
@@ -166,7 +118,6 @@
     function dragEnd(e) {
         initialX = currentX;
         initialY = currentY;
-
         active = false;
     }
 
